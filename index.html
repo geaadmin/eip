@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - EIP</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluating and Improving Your Performance</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<div id="chart"></div>
+
+<script>
+    var options = {
+        chart: {
+            type: 'rangeBar',
+            height: 350,
+        },
+        series: [{
+            name: 'Process Phases',
+            data: [
+                {
+                    x: 'Self-Assessment',
+                    y: [0, 1],
+                    fillColor: '#FFC0CB',  // Pink color for Self-Assessment
+                    tooltip: {
+                        text: 'Engage in regular introspection to discern organizational strengths and pinpoint areas for enhancement.'
+                    }
+                },
+                {
+                    x: 'External Validation',
+                    y: [1, 2],
+                    fillColor: '#ADD8E6',  // Light blue color for External Validation
+                    tooltip: {
+                        text: 'Solicit third-party assessments to gain external perspectives and validate internal assessments.'
+                    }
+                },
+                {
+                    x: 'Performance Metrics',
+                    y: [2, 3],
+                    fillColor: '#90EE90',  // Light green color for Performance Metrics
+                    tooltip: {
+                        text: 'Implement key performance indicators (KPIs) aligned with strategic goals to track and assess progress quantitatively.'
+                    }
+                }
+            ]
+        }],
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                distributed: true  // Apply different colors to each bar
+            }
+        },
+        xaxis: {
+            type: 'numeric'
+        },
+        tooltip: {
+            enabled: true,
+            custom: function({ series, seriesIndex, dataPointIndex, w }) {
+                var data = w.config.series[seriesIndex].data[dataPointIndex];
+                return '<div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">' +
+                        '<b>' + data.x + '</b><br>' +
+                        '<span>' + data.tooltip.text + '</span>' +
+                        '</div>';
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function(val, opts) {
+                return opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex].x;
+            },
+            style: {
+                colors: ['#000']
+            }
+        },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
